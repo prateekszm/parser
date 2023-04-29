@@ -1,0 +1,2 @@
+ - Add new method to convert pdf to text that can preserve the format of the pdf done
+ - Remove the memory after use
