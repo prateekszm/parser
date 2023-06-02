@@ -28,9 +28,7 @@ public class Claim {
 	@OneToOne
 	@JoinColumn(name = "fk_account_id")
 	private Account account;
-	@OneToOne
-	@JoinColumn(name = "fk_file_format")  //In future change this into string with name
-	private FileFormat fileFormat;
+	private String fileFormat;
 	@Column(name = "data_claim_key")
 	private String dataClaimKey;
 	@Column(name = "header_level_data",columnDefinition="TEXT")
@@ -66,10 +64,10 @@ public class Claim {
 	public void setDataClaimKey(String dataClaimKey) {
 		this.dataClaimKey = dataClaimKey;
 	}
-	public FileFormat getFileFormat() {
+	public String getFileFormat() {
 		return fileFormat;
 	}
-	public void setFileFormat(FileFormat fileFormat) {
+	public void setFileFormat(String fileFormat) {
 		this.fileFormat = fileFormat;
 	}
 	public String getHeaderLevelData() {

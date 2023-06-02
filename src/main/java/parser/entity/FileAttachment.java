@@ -29,7 +29,10 @@ public class FileAttachment {
 	@ManyToOne
 	@JoinColumn(name="fk_uploaded_data_details")
 	private UploadedDataDetails uploadedDataDetails;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "fk_email_meta_data")
+	private EmailMetaData emailMetaData;
 	@Column(name="processing_status")
 	private Integer processingStatus;
 	@Column(name="file_path")
@@ -52,6 +55,7 @@ public class FileAttachment {
 	private transient  String updatedUser;
 	@Column(name = "is_deleted" ,columnDefinition = "BOOLEAN")
 	private Boolean isDeleted;
+
 	
 	
 	public Integer getFileAttachmentId() {
@@ -137,6 +141,21 @@ public class FileAttachment {
 	}
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+	public EmailMetaData getEmailMetaData() {
+		return emailMetaData;
+	}
+
+	public void setEmailMetaData(EmailMetaData emailMetaData) {
+		this.emailMetaData = emailMetaData;
+	}
+
+	public Boolean getDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		isDeleted = deleted;
 	}
 	@Override
 	public String toString() {

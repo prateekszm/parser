@@ -5,7 +5,7 @@ import parser.service.impl.AttachmentParser;
 
 public class AmazonPdfParserCustom extends AttachmentParser {
     @Override
-    public Boolean parseFile(String filePath, FileFormatMetaData fileFormatMetaData, Integer accountId, Integer fileFormatId) {
-        return super.parseFile(filePath, fileFormatMetaData, accountId, fileFormatId);
+    public Boolean parseFile(String filePath, FileFormatMetaData fileFormatMetaData, Integer accountId, String fileFormatName) {
+        return super.parseFile(filePath, fileFormatMetaData, accountId, fileFormatName);
     }
 }

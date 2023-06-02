@@ -8,15 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import parser.entity.Account;
-import parser.entity.Claim;
-import parser.entity.FileAttachment;
-import parser.entity.FileFormat;
-import parser.entity.FileFormatParser;
-import parser.entity.HeaderFieldParser;
-import parser.entity.ItemLinePattern;
-import parser.entity.ItemLinePosition;
-import parser.entity.UploadedDataDetails;
+import parser.entity.*;
 
 public class HibernateUtils {
 	private static SessionFactory sessionFactory;
@@ -48,7 +40,6 @@ public class HibernateUtils {
 
 				configuration.setProperties(settings);
 				addAnnotatedClass(configuration);
-				
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -71,5 +62,6 @@ public class HibernateUtils {
 		configuration.addAnnotatedClass(ItemLinePattern.class);
 		configuration.addAnnotatedClass(ItemLinePosition.class);
 		configuration.addAnnotatedClass(Claim.class);
+		configuration.addAnnotatedClass(EmailMetaData.class);
 	}
 }

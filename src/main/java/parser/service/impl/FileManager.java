@@ -21,11 +21,19 @@ public class FileManager {
     boolean folderParsed = false;
 
     public void run(HashMap<String, String> config) {
+
         ArrayList<String> filePathList = new ArrayList<>();
         ArrayList<FileAttachment> fileAttachmentList = new ArrayList<>();
 
         System.out.println("Inside fileManager run");
         System.out.println(config);
+        String bot = config.get("bot");
+        if(bot.equals("fileManager")){
+
+        }
+        if(bot.equals("emailManager")){
+
+        }
         try {
             File folder = new File(config.get(StringConstants.FOLDERPATH));
             UploadedDataDetails uploadedDataDetails = new UploadedDataDetails();

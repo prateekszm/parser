@@ -35,7 +35,7 @@ public class FileFormatParserRepoImpl implements FileFormatParserRepo {
 			}
 			e.printStackTrace();
 		}
-			return fileFormatParserList.get(0);
+		return fileFormatParserList.get(0);
 	}
 
 	@Override

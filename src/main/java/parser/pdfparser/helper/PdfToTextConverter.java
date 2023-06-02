@@ -1,6 +1,7 @@
 package parser.pdfparser.helper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.pdfbox.io.RandomAccessFile;
@@ -30,6 +31,23 @@ public class PdfToTextConverter extends LayoutTextStripper {
 			if(pdfDocument!=null) {
 				pdfDocument.close();
 			}
+		}
+		return text;
+	}
+
+	 public static String layoutPreserveTextConverter(String path){
+		String text = "";
+		try {
+			PDFParser pdfParser = new PDFParser(new RandomAccessFile(new File(path), "r"));
+			pdfParser.parse();
+			PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
+			LayoutTextStripper layoutTextStripper = new LayoutTextStripper();
+			text = layoutTextStripper.getText(pdDocument);
+			return text;
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 		return text;
 	}

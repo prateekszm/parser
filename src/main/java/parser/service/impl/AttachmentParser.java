@@ -9,6 +9,7 @@ import parser.pdfparser.helper.PdfToTextConverter;
 import parser.service.CustomParser;
 import parser.utils.ReflectionUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class AttachmentParser implements CustomParser {
 		String methodName = parserMetaData.getFileFormatList().get(0).getTextExtractormethod();
 		FileFormatMetaData fileFormatMetaData = null;
 		Integer fileFormatId = null;
+		String fileFormatName = "";
 		try {
 			for (String filePath : filePathList) {
 				pdfText = ReflectionUtils.getTextFromPdf(className, methodName, filePath);
@@ -34,9 +36,8 @@ public class AttachmentParser implements CustomParser {
 					pdfText = BaseParser.getMatch(pdfText, fileFormat.getTempeletRegex(), 0);
 					if (pdfText != null) {
 						fileFormatMetaData = new FileFormatMetaData(fileFormat.getFileFormatId(), parserMetaData);
-						fileFormatId = fileFormat.getFileFormatId();
-						parseFile(filePath, fileFormatMetaData, accountId, fileFormatId);
-						fileFormatMetaData = null;
+						fileFormatName = fileFormat.getTempeleteName();
+						parseFile(filePath, fileFormatMetaData, accountId, fileFormatName);
 						break;
 					}
 				}
@@ -52,15 +53,13 @@ public class AttachmentParser implements CustomParser {
 
 	@Override
 	public Boolean parseFile(String filePath, FileFormatMetaData fileFormatMetaData, Integer accountId,
-			Integer fileFormatId) {
+			String fileFormatName) {
 		boolean status = false;
 		Account account = new Account();
 		account.setAccountId(accountId);
-		FileFormat fileFormat = new FileFormat();
-		fileFormat.setFileFormatId(fileFormatId);
 		Claim claim = new Claim();
 		claim.setAccount(account);
-		claim.setFileFormat(fileFormat);
+		claim.setFileFormat(fileFormatName);
 		Map<String, Claim> claimMap = new HashMap<>();
 		try {
 			String pdfText = PdfToTextConverter.pdfToTextConverter(filePath);

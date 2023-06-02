@@ -15,9 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 
-/*
- * this class will contains all the position for the item level data
-*/
+
 @Entity
 @Table(name = "item_line_position")
 public class ItemLinePosition {
